@@ -1,0 +1,53 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  overflow-x:hidden;
+}
+
+.abcRioButtonBlue .abcRioButtonContentWrapper {
+    border: 1px solid transparent;
+}
+
+.abcRioButtonContentWrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.abcRioButtonBlue .abcRioButtonIcon {
+    background-color: #fff;
+    border-radius: 1px;
+}
+
+.abcRioButtonIcon {
+    float: left;
+}
+
+.abcRioButtonContents {
+    font-family: Roboto,arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .21px;
+    margin-left: 6px;
+    margin-right: 6px;
+    vertical-align: top;
+}
+
+.abcRioButtonBlue {
+    background-color: #4285f4;
+    border: none;
+    color: #fff;
+}
