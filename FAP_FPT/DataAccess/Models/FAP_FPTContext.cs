@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace FAP_FPT.DataAccess.Models
 {
-    public partial class FAP_FPTContext : IdentityDbContext<User>
+    public partial class FAP_FPTContext : DbContext
     {
         public FAP_FPTContext()
         {
@@ -54,7 +53,10 @@ namespace FAP_FPT.DataAccess.Models
 
                 entity.Property(e => e.StudentId).HasColumnName("StudentID");
 
-                entity.Property(e => e.IsPresent).HasColumnName("isPresent");
+                entity.Property(e => e.IsPresent)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("isPresent");
 
                 entity.HasOne(d => d.Schedule)
                     .WithMany(p => p.Attendances)

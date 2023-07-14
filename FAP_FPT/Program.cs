@@ -1,14 +1,48 @@
+using FAP_FPT.Business.IRepository;
+using FAP_FPT.Business.Mapping;
+using FAP_FPT.Business.Repository;
 using FAP_FPT.DataAccess.Models;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
+{
+    options.Conventions.AddPageRoute("/login", "");
+});
+
 builder.Services.AddCors();
-builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<FAP_FPTContext>().AddDefaultTokenProviders();
+
+builder.Services.AddTransient<IUserRepository, UserRepository>()
+    .AddDbContext<FAP_FPTContext>(
+        otp =>
+            builder.Configuration.GetConnectionString("ConnectString"));
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+
+builder.Services.AddSession();
+
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultSignInScheme = "CookieScheme";
+        options.DefaultChallengeScheme = "GoogleScheme";
+    })
+    .AddCookie("CookieScheme")
+    .AddGoogle(
+        "Google", options =>
+        {
+            IConfiguration googleAuthen = builder.Configuration.GetSection("Authentication:Google");
+            options.SaveTokens = true;
+            options.ClientId = "438975213439-i2q8emg7slpcu7dqhamuc2nv11oiosb4.apps.googleusercontent.com";
+            options.ClientSecret = "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";
+            options.CorrelationCookie.SameSite = SameSiteMode.Lax;
+        }
+    );
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -25,7 +59,8 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-IdentityUser user;
+app.UseSession();
 
+app.UseCookiePolicy();
  
 app.Run();

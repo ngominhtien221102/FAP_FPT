@@ -1,25 +1,21 @@
 ﻿using FAP_FPT.DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FAP_FPT.DataAccess.Managers
 {
     public class ScheduleManager
     {
-        private FAP_FPTContext context;
+        private FAP_FPTContext context = new FAP_FPTContext();
 
         public List<Schedule> GetStudentSchedules(int studentId)
         {
-            List<Schedule> schedules = context.Schedules.Where(s => s.Attendances.Any(a => a.StudentId == studentId)).ToList();
+            List<Schedule> schedules = context.Schedules.Where(s => s.Attendances.Any(a => a.StudentId == studentId))
+                .Include(p => p.CourseClass).ThenInclude(c => c.Course)
+                .Include(p => p.Teacher)
+                .Include(p => p.Room)
+                .Include(p => p.Slot)
+                .ToList();
             return schedules;
-        }
-
-        static void Main(string[] args)
-        {
-            ScheduleManager s = new ScheduleManager();
-            List<Schedule> schedules = s.GetStudentSchedules(3);
-            foreach (Schedule item in schedules)
-            {
-                Console.WriteLine(item.ToString());
-            }
         }
 
     }

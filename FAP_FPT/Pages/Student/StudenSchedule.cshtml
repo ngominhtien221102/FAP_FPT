@@ -51,100 +51,41 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="align-middle">Slot1</td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
+                @for (var i = 0; i < 6; i++)
+                {
+                    <tr>
+                    <td class="align-middle">Slot @(i+1)</td>
+                    @for (var j = 0; j < 7; j++){
+                            <td>
+                                @if (Model.timeTable1[@i, @j] == null)
+                                {
+                                    <span>-</span>
+                                }
+                                else
+                                {
+                                    <a href="/Student/ScheduleDetail/@Model.timeTable1[@i, @j].Id">@Model.timeTable1[@i, @j].Schedule.CourseClass.CourseId</a>
+                                     <br />
+                                    <span>at @Model.timeTable1[@i, @j].Schedule.RoomId</span>
+                                    <br />
+                                    <span class="label label-success">(@Model.timeTable1[@i, @j].Schedule.Slot.StartTime - @Model.timeTable1[@i, @j].Schedule.Slot.EndTime) </span>
+                                    <br />
+                                    @if (Model.timeTable1[@i, @j].IsPresent == "0")
+                                    {
+                                        <span>(<font color="red">Not Yet</font>)</span>
+                                    }
+                                    else if (Model.timeTable1[@i, @j].IsPresent == "1")
+                                    {
+                                        <span>(<font color="green">attended</font>)</span>
+                                    }
+                                    else
+                                    {
+                                        <span>(<font color="red">absent</font>)</span>
+                                    }
+                                }
+                            </td>
+                    }
                 </tr>
-
-                <tr>
-                    <td class="align-middle">Slot2</td>
-                    <td>
-                    </td>
-                    <td class="bg-light-gray">
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td class="bg-light-gray">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="align-middle">Slot3</td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="align-middle">Slot 4</td>
-                    <td class="bg-light-gray">
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td class="bg-light-gray">
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="align-middle">Slot5</td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td class="bg-light-gray">
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="align-middle">Slot6</td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td class="bg-light-gray">
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+                }      
             </tbody>
         </table>
     </div>
