@@ -4,11 +4,13 @@
 }
 
 <link rel="stylesheet" href="~/css/table.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
 
 <div id="Note" style="margin-top: 30px; margin-left: 10px">
     <h2>
         Activities for
-        <span>tiennmhe161579 (Ngô Minh Tiến)</span>
+        <span>@Model.CurrentStudent.StudentCode (@Model.CurrentStudent.FullName)</span>
     </h2>
     <p>
         <b>Note</b>: These activities do not include extra-curriculum activities, such as
@@ -29,11 +31,20 @@
         </p>
     </div>
 </div>
+<div id="ChangeWeek" style="margin-top: 30px; margin-left: 10px">
+    <a class="btn btn-primary" href="/Student/StudenSchedule?id=@(Model.Id - 1)">
+        <i class="fas fa-arrow-left"></i> Last Week
+    </a>
+    <a class="btn btn-primary" href="/Student/StudenSchedule?id=@(Model.Id + 1)">
+        Next Week <i class="fas fa-arrow-right"></i>
+    </a>
+</div>
 
 <div class="container">
     <div class="timetable-img text-center">
         <img src="img/content/timetable.png" alt="">
     </div>
+  
     <div class="table-responsive">
         <table class="table table-bordered text-center">
             <thead>
@@ -41,13 +52,12 @@
                     <th class="text-uppercase">
                         Time
                     </th>
-                    <th class="text-uppercase">Monday</th>
-                    <th class="text-uppercase">Tuesday</th>
-                    <th class="text-uppercase">Wednesday</th>
-                    <th class="text-uppercase">Thursday</th>
-                    <th class="text-uppercase">Friday</th>
-                    <th class="text-uppercase">Saturday</th>
-                    <th class="text-uppercase">Sunday</th>
+                    @foreach (var day in Model.weekDays)
+                    {
+                        <th class="text-uppercase">@day.DayOfWeek
+                            <br />@day.ToString("dd/MM/yyyy")
+                        </th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -81,6 +91,7 @@
                                     {
                                         <span>(<font color="red">absent</font>)</span>
                                     }
+                                    <span style="hidden" id="@Model.timeTable1[@i, @j].Id"></span>
                                 }
                             </td>
                     }
@@ -97,10 +108,26 @@
     </p>
     <div id="ctl00_mainContent_divfoot">
         <ul>
-            <li>(<font color="green">attended</font>): tiennmhe161579 had attended this activity / Ngô Minh Tiến đã tham gia hoạt động này</li>
-            <li>(<font color="red">absent</font>): tiennmhe161579 had NOT attended this activity / Ngô Minh Tiến đã vắng mặt buổi này</li>
+            <li>(<font color="green">attended</font>): @Model.CurrentStudent.StudentCode had attended this activity / @Model.CurrentStudent.FullName đã tham gia hoạt động này</li>
+            <li>(<font color="red">absent</font>): @Model.CurrentStudent.StudentCode had NOT attended this activity / @Model.CurrentStudent.FullName đã vắng mặt buổi này</li>
             <li>(-): no data was given / chưa có dữ liệu</li>
         </ul>
     </div>
 
 </div>
+
+<script src="~/microsoft/signalr/dist/browser/signalr.js"></script>
+<script>
+    var connection = new signalR.HubConnectionBuilder().withUrl("/attendanceHub").build();
+    connection.start();
+    connection.on("attendanceSuccessful", function (listAttendancesUpdate) {
+        var  listAttendances = JSON.parse(listAttendancesUpdate);
+        listAttendances.forEach(function (item) {
+            var span = document.getElementById(item.Id);
+            if (span) {
+                alert("Thông tin điểm danh đã thay đổi vui lòng reload lại trang!");          
+            }
+        });
+        console.log("listAttendances: ", listAttendances);
+        });
+</script>

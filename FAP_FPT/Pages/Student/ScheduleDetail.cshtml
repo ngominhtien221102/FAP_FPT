@@ -1,0 +1,30 @@
+﻿@page "/Student/ScheduleDetail/{id?}"
+@model FAP_FPT.Pages.Student.ScheduleDetailModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+<h2>Activity Detail</h2>
+
+<table class="table table-hover table-striped">
+    <tr><td>Date: @Model.attendance.Schedule.Date.DayOfWeek @Model.attendance.Schedule.Date.ToString("dd/MM/yyyy")</td></tr>
+    <tr><td>Slot: @Model.attendance.Schedule.SlotId</td></tr>
+    <tr><td>Student group: @Model.attendance.Schedule.CourseClass.ClassId</td></tr>
+    <tr><td>Instructor: @Model.attendance.Schedule.Teacher.TeacherCode</td></tr>
+    <tr><td>Course: @Model.attendance.Schedule.CourseClass.CourseId</td></tr>
+    <tr>
+    <td>
+        @if (Model.attendance.IsPresent == "1")
+        {
+            <span class="text-success">Attendance</span>
+        }
+        else if (Model.attendance.IsPresent == "0")
+        {
+            <span class="text-danger">Not Yet</span>
+        }
+        else
+        {
+            <span class="text-info">Absent</span>
+        }
+    </td>
+</tr>
+</table>

@@ -2,6 +2,7 @@ using FAP_FPT.Business.IRepository;
 using FAP_FPT.Business.Mapping;
 using FAP_FPT.Business.Repository;
 using FAP_FPT.DataAccess.Models;
+using FAP_FPT.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,7 @@ builder.Services
             options.CorrelationCookie.SameSite = SameSiteMode.Lax;
         }
     );
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -58,6 +60,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapHub<AttendanceHub>("/attendanceHub");
 
 app.UseSession();
 

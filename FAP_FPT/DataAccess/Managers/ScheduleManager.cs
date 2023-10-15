@@ -18,6 +18,29 @@ namespace FAP_FPT.DataAccess.Managers
             return schedules;
         }
 
+        public List<Schedule> GetTeacherSchedules(int? userId)
+        {   
+            List<Schedule> schedules = context.Schedules.Where(s => s.Teacher.UserId == userId)
+                .Include(p => p.CourseClass).ThenInclude(c => c.Course)
+                .Include(p => p.Attendances)
+                .Include(p => p.Room)
+                .Include(p => p.Slot)
+                .ToList();
+            return schedules;
+        }
+
+
+        public List<Schedule> GetTeacherSchedulesByDate(int? userId, DateTime startDate, DateTime endDate)
+        {
+            List<Schedule> schedules = context.Schedules.Where(s => s.Teacher.UserId == userId
+            && s.Date >= startDate && s.Date <= endDate)
+                .Include(p => p.CourseClass).ThenInclude(c => c.Course)
+                .Include(p => p.Attendances)
+                .Include(p => p.Room)
+                .Include(p => p.Slot)
+                .ToList();
+            return schedules;
+        }
     }
 
     

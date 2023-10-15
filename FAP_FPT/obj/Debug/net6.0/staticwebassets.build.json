@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fATOs+gy3F2COPzHtr64zgvH386nlBtzbfKAHD56Zno=",
+  "Hash": "va79V7xPw4XbnqAk6JjYQ1ljkq4sdJb/NZ3y5B+KybA=",
   "Source": "FAP_FPT",
   "BasePath": "_content/FAP_FPT",
   "Mode": "Default",
@@ -2106,6 +2106,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\PRN221\\FAP_FPT\\FAP_FPT\\wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.js",
+      "SourceId": "FAP_FPT",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PRN221\\FAP_FPT\\FAP_FPT\\wwwroot\\",
+      "BasePath": "_content/FAP_FPT",
+      "RelativePath": "microsoft/signalr/dist/browser/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.js"
+    },
+    {
+      "Identity": "D:\\PRN221\\FAP_FPT\\FAP_FPT\\wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.min.js",
+      "SourceId": "FAP_FPT",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PRN221\\FAP_FPT\\FAP_FPT\\wwwroot\\",
+      "BasePath": "_content/FAP_FPT",
+      "RelativePath": "microsoft/signalr/dist/browser/signalr.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.min.js"
     }
   ]
 }

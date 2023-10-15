@@ -14,6 +14,8 @@ namespace FAP_FPT.DataAccess.Models
         public string ClassId { get; set; } = null!;
         public string CourseId { get; set; } = null!;
         public int? TeacherId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public virtual Class Class { get; set; } = null!;
         public virtual Course Course { get; set; } = null!;

@@ -1,0 +1,138 @@
+﻿@page
+@model FAP_FPT.Pages.Student.ReportAttendanceStudentModel
+@{
+    string absentPercentageString = "";
+    int absentCount = 0;
+    int totalSlots = 0;
+    if (Model.getListAttendance.Any())
+    {
+        totalSlots = Model.getListAttendance.Count;
+        absentCount = Model.getListAttendance.Count(i => i.IsPresent == "2");
+        double absentPercentage = (double)absentCount / totalSlots * 100;
+        double roundedAbsentPercentage = Math.Round(absentPercentage, 2, MidpointRounding.AwayFromZero);
+        absentPercentageString = roundedAbsentPercentage.ToString("N2");
+    }
+}
+<h2>
+    View attendance for Ngô Minh Tiến (tiennmhe161579)
+</h2>
+<table>
+    <tbody>
+        <tr>
+            <td valign="top">
+                <h3>Select a campus/program, term, course ...</h3>
+                <table summary="Select a course">
+                    <thead>
+                        <tr>
+                            <th scope="col">Campus/program</th>
+                            <th scope="col">Term</th>
+                            <th scope="col">Course</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td valign="top">
+                                <div id="ctl00_mainContent_divCampus">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>FU-HL</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                            <td valign="top">
+                                <div id="ctl00_mainContent_divTerm">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Summer2023</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                            <td valign="top">
+                                <div id="ctl00_mainContent_divCourse">
+                                    <table>
+                                        <tbody>
+                                            @foreach (var i in Model.getCourseClassByUser){
+                                            <tr>
+                                                    <td><a href="?id=5&amp;course=@i.CourseId">@i.Course.CourseName (@i.CourseId)</a>(@i.ClassId,start @i.StartDate.ToString("dd/MM/yyyy") )</td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td valign="top">
+                <h3>... then see report<br><br></h3>
+                <table class="table table-bordered table1">
+                    <tbody>
+                        <tr></tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Date</th>
+                            <th>Slot</th>
+                            <th>Room</th>
+                            <th>Lecturer</th>
+                            <th>Group Name</th>
+                            <th>Attedance status</th>
+                            <th>Lecturer's comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var i in Model.getListAttendance) { 
+                        <tr>
+                            <td>@(Model.getListAttendance.IndexOf(i) + 1)</td>
+                                <td><span class="label label-primary">@i.Schedule.Date.DayOfWeek @i.Schedule.Date.ToString("dd/MM/yyyy")</span></td>
+                                <td><span class="label label-danger">Slot-@i.Schedule.SlotId _ (@i.Schedule.Slot.StartTime.ToString() - @i.Schedule.Slot.EndTime.ToString())</span></td>
+                            <td>@i.Schedule.RoomId</td>
+                            <td>@i.Schedule.Teacher.TeacherCode</td>
+                            <td>@i.Schedule.CourseClass.CourseId</td>
+                                <td>
+                                    @if (@i.IsPresent == "0")
+                                    {
+                                        <font color="black">Future</font>
+                                    }
+                                    else if (@i.IsPresent == "1")
+                                    {
+                                        <font color="green">Attendance</font>
+                                    }
+                                    else if (@i.IsPresent == "2")
+                                    {
+                                        <font color="red">Absent</font>
+                                    }
+                                </td>
+                            <td></td>
+                        </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            @if (Model.getListAttendance.Any())
+                            {
+                                <td colspan="7">
+                                    <b>Absent</b>: @absentPercentageString  % absent so far (@absentCount absent on @totalSlots total)_(Attendance Exemption).
+                                </td>
+                            }
+                            else
+                            {
+                                <td colspan="7">
+                                    Data not available.
+                                </td>
+                            }
+                        </tr>
+                    </tfoot>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

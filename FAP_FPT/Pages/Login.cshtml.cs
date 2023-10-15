@@ -6,12 +6,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using FAP_FPT.Business.DTO;
 using System.Security.Claims;
 using FAP_FPT.DataAccess.Models;
+using FAP_FPT.DataAccess.Managers;
 
 namespace FAP_FPT.Pages
 {
     public class LoginModel : PageModel
     {
         private IUserRepository _userRepository;
+
+        private StudentManger studentManger;
 
         public LoginModel(IUserRepository userRepository)
         {
@@ -49,7 +52,19 @@ namespace FAP_FPT.Pages
                 return Page();
             }
             HttpContext.Session.SetInt32("userId", loginedUser.Id);
-            return LocalRedirect("/Student/StudenSchedule");
+            HttpContext.Session.SetInt32("roleId", loginedUser.RoleId);
+            if(loginedUser.RoleId == 3)
+            {
+                return LocalRedirect("/Student/Home");
+            }    
+            else if(loginedUser.RoleId == 2)
+            {
+                return LocalRedirect("/Teacher/Home");
+            } else
+            {
+                return LocalRedirect("/Index");
+            }    
+            
         }
     }
 }

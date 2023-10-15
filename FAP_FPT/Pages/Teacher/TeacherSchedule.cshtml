@@ -1,0 +1,95 @@
+﻿@page
+@model FAP_FPT.Pages.Teacher.TeacherScheduleModel
+@{
+    DateTime currentDate = DateTime.Now.Date;
+    TimeSpan currentTime = DateTime.Now.TimeOfDay;
+}
+<link rel="stylesheet" href="~/css/table.css" />
+
+<div id="Note" style="margin-top: 30px; margin-left: 10px">
+    <h2>
+        Activities for
+        <span>Teacher: @Model.CurrentTeacher.TeacherCode (@Model.CurrentTeacher.FullName)</span>
+    </h2>
+    <div id="ctl00_mainContent_ghichu">
+        <p>
+            Các phòng bắt đầu bằng AL thuộc tòa nhà Alpha. VD: AL...<br>
+            Các phòng bắt đầu bằng BE thuộc tòa nhà Beta. VD: BE,..<br>
+            Các phòng bắt đầu bằng G thuộc tòa nhà Gamma. VD: G201,...<br>
+            Các phòng tập bằng đầu bằng R thuộc khu vực sân tập Vovinam.<br>
+            Các phòng bắt đầu bằng DE thuộc tòa nhà Delta. VD: DE,..<br>
+            Little UK (LUK) thuộc tầng 5 tòa nhà Delta
+        </p>
+    </div>
+</div>
+<div id="ChangeWeek" style="margin-top: 30px; margin-left: 10px">
+    <a class="btn btn-primary" href="/Teacher/TeacherSchedule?id=@(Model.Id - 1)">
+        <i class="fas fa-arrow-left"></i> Last Week
+    </a>
+    <a class="btn btn-primary" href="/Teacher/TeacherSchedule?id=@(Model.Id + 1)">
+        Next Week <i class="fas fa-arrow-right"></i>
+    </a>
+</div>
+<div class="container">
+    <div class="timetable-img text-center">
+        <img src="img/content/timetable.png" alt="">
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr class="bg-light-gray">
+                    <th class="text-uppercase">
+                        Time
+                    </th>
+                    @foreach (var day in Model.weekDays)
+                    {
+                        <th class="text-uppercase">
+                            @day.DayOfWeek
+                            <br />@day.ToString("dd/MM/yyyy")
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < 6; i++)
+                {
+                    <tr>
+                        <td class="align-middle">Slot @(i + 1)</td>
+                        @for (var j = 0; j < 7; j++)
+                        {
+                            <td>
+                                @if (Model.timeTable[@i, @j] == null)
+                                {
+                                    <span>-</span>
+                                }
+                                else
+                                {
+                                    <a href="/Teacher/CheckAttendance/@Model.timeTable[@i, @j].Id">@Model.timeTable[@i, @j].CourseClass.CourseId</a>
+                                    <br />
+                                    <span>Class: @Model.timeTable[@i, @j].CourseClass.ClassId</span>
+                                    <span>at @Model.timeTable[@i, @j].RoomId</span>
+                                    <br />
+                                    <span class="label label-success">(@Model.timeTable[@i, @j].Slot.StartTime - @Model.timeTable[@i, @j].Slot.EndTime) </span>
+                                    <br />
+                                    @if (@Model.timeTable[@i, @j].Date < currentDate)
+                                    {
+                                        <span style="color:red">Out of time</span>
+                                    }
+                                    else if (@Model.timeTable[@i, @j].Date == currentDate && (@Model.timeTable[@i, @j].Slot.StartTime <= currentTime && @Model.timeTable[@i, @j].Slot.EndTime >= currentTime))
+                                    {
+                                        <span style="color:green">Check attendance</span>
+                                    }else
+                                    {
+                                        <span style="color:red">Not yet</span>
+                                    }
+
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

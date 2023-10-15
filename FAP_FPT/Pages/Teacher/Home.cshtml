@@ -1,0 +1,100 @@
+﻿@page
+@model FAP_FPT.Pages.Teacher.HomeModel
+@{
+}
+<div class="box" style="float: right; width: 80%; padding-bottom: 150px">
+    <h3 class="orangeTitle">Academic Information</h3>
+    <div class="listBoxWrapper">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        <br>
+                                        <br>
+                                        <input name="ctl00$mainContent$txtVideo" type="text" id="ctl00_mainContent_txtVideo" class="form-control" placeholder="Nhập URL video quá trình test-covid đã upload lên Youtube">
+                                        <span id="ctl00_mainContent_lblTest" style="font-weight: 700; color: #FF3300"></span>
+                                        <input id="ctl00_mainContent_rdFCV" type="radio" name="ctl00$mainContent$rdFCV" value="rdFCV" onclick="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$rdFCV\',\'\')', 0)"><label for="ctl00_mainContent_rdFCV"> Cập nhật tình trạng F0 (Có hiệu lực 7 ngày kể từ thời điểm đăng ký)</label>
+                                        <span id="ctl00_mainContent_lblThongbao"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <h4>Information Access(Tra cứu thông tin)</h4>
+                                        <ul>
+
+                                            <li><a href="FrontOffice/SubjectFees.aspx">Tuition fee per course</a> (Biểu học phí)</li>
+                                            <li><a href="Report/ScheduleOfWeek.aspx">Weekly timetable</a> (Thời khóa biểu từng tuần)</li>
+                                            <li><a href="Schedule/FunixSchedule.aspx">Blended Online Course (BLOC) Schedules </a>(Lịch học các môn theo phương pháp BLOC trong kỳ)</li>
+                                            <li><a href="/Teacher/TeacherSchedule">Class timetable</a> (Xem lịch giảng dạy)</li>
+                                            <li><a href="http://flm.fpt.edu.vn" target="_blank">View Syllabuses</a>(Xem đề cương môn học)</li>
+                                            <li><a href="https://fap.fpt.edu.vn/temp/Regulations/Huong_dan_KTXH_tren_EduNext_Sp23_Sinh_Vien.pdf" target="_blank">EduNext student guideline</a><img src="images/New_icons_10.gif" id="ctl00_mainContent_img1"></li>
+                                            <li><a href="https://fap.fpt.edu.vn/temp/Regulations/KTXCT.pdf" target="_blank">Dormitory regulations (Nội quy KTX Cần Thơ)</a></li>
+                                            <span id="ctl00_mainContent_lblhelp">
+                                            <li><a href="Report/Help.aspx" target="_blank">Help/Hỗ trợ</a><img runat="server" id="img3" visible="true" src="images/New_icons_10.gif"></li></span>
+                                            <span id="ctl00_mainContent_lblOR">
+                                            <li><a href="https://fap.fpt.edu.vn/temp/Regulations/Slide_OR_student.rar" target="_blank">Tài liệu hướng dẫn: Định hướng cho sinh viên</a><img runat="server" id="img2" src="images/New_icons_10.gif" alt=""></li></span>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <h4>Feedback(Ý kiến)</h4>
+                                        <ul>
+                                            <li><a href="Feedback/StudentFeedBack.aspx">Feedback about teaching</a> (Ý kiến về việc giảng dạy)</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Regulations(Các quy định)</h4>
+                                        <ul>
+                                            <li><a href="User/Regulations.aspx" target="_blank">Regulations...</a></li>
+                                            <li><a href="https://fap.fpt.edu.vn/temp/Regulations/QD 272_new.pdf" target="_blank">Dormitory regulations (Nội quy KTX)</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Courses on FPTU-Coursera</h4>
+                                        <ul>
+                                            <li><a href="https://fap.fpt.edu.vn/temp/Regulations/FPTU-Coursera.pdf" target="_blank">Announcement</a></li>
+                                        </ul>
+                                        <ul>
+                                            <li><a href="SRS/AddQA.aspx" target="_blank">Ask mentor</a></li>
+                                        </ul>
+                                        <ul>
+                                            <li><a href="SRS/ViewQAS.aspx" target="_blank">View answer</a></li>
+                                        </ul>
+                                        <ul>
+                                            <li><a href="https://insideuni.fpt.edu.vn/13" target="_blank">Submit certificates</a></li>
+                                        </ul>
+                                        <ul>
+                                            <li><a href="https://fap.fpt.edu.vn/temp/Regulations/Coursera_certificates_submission_guidelines.pdf" target="_blank">Certificate submission guideline</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <div id="ctl00_mainContent_divKTX" class="row">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">Thông tin KTX </div>
+                                                    <div class="panel-body">
+                                                        <div id="ctl00_mainContent_divContent"><a href="https://ocd.fpt.edu.vn/">Thông tin KTX =&gt;Hòa Lạc - On Campus Dormitory</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

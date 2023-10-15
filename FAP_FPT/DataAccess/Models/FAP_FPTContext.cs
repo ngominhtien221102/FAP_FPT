@@ -109,6 +109,10 @@ namespace FAP_FPT.DataAccess.Models
                     .IsUnicode(false)
                     .HasColumnName("CourseID");
 
+                entity.Property(e => e.EndDate).HasColumnType("date");
+
+                entity.Property(e => e.StartDate).HasColumnType("date");
+
                 entity.Property(e => e.TeacherId).HasColumnName("TeacherID");
 
                 entity.HasOne(d => d.Class)

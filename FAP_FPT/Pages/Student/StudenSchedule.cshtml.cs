@@ -1,26 +1,62 @@
 
 using FAP_FPT.DataAccess.Managers;
 using FAP_FPT.DataAccess.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using FAP_FPT.Helper;
+using Microsoft.AspNetCore.Components.Server;
+using System;
 
 namespace FAP_FPT.Pages.Student
 {
     public class StudenScheduleModel : PageModel
     {
-        private ScheduleManager manager = new ScheduleManager();
+        
+        private AttendanceManager attendanceManager = new AttendanceManager();
 
-        private AttendanceManager manager1 = new AttendanceManager();
+        private StudentManger studentManger = new StudentManger();
 
         private List<TimeSlot> timeSlots;
 
-        public Schedule[,] timeTable = new Schedule[6, 7];
-
         public Attendance[,] timeTable1 = new Attendance[6, 7];
 
-        public void OnGet()
+        public int Id { get; set; }
+
+        DateTime currentDate = DateTime.Now;
+
+        private DateTime monday;
+
+        private DateTime sunday;
+
+        public List<DateTime> weekDays { get; set; }
+
+        public FAP_FPT.DataAccess.Models.Student CurrentStudent { get; set; }
+        public IActionResult OnGet(int? id)
         {
-            List<Schedule> schedules = manager.GetStudentSchedules(3);
-            List<Attendance> attendances = manager1.GetAttendanceByStudentId(3);
+            int? userId = HttpContext.Session.GetInt32("userId");
+            int? roleId = HttpContext.Session.GetInt32("roleId");
+            if (userId == null || roleId == null || roleId != 3)
+            {
+                return LocalRedirect("/Login");
+            }
+
+            if(id == null)
+            {
+                monday = DetermineTime.MondayOfWeek(currentDate);
+                sunday = DetermineTime.SundayOfWeek(currentDate);
+                weekDays = GetWeekDays(monday);
+                Id = 0;
+            }
+            else
+            {
+                    currentDate = currentDate.AddDays((double)(id * 7));
+                    monday = DetermineTime.MondayOfWeek(currentDate);
+                    sunday = DetermineTime.SundayOfWeek(currentDate);
+                    weekDays = GetWeekDays(monday);
+                Id = (int)id;
+            }
+            CurrentStudent = studentManger.GetStudentByUserId(userId);
+            List<Attendance> attendances = attendanceManager.GetListAttendanceByStudent(userId,monday,sunday);
             foreach (Attendance s in attendances)
             {
                 switch (s.Schedule.Date.DayOfWeek)
@@ -48,6 +84,18 @@ namespace FAP_FPT.Pages.Student
                         break;
                 }
             }
+            return Page();
+        }
+        private List<DateTime> GetWeekDays(DateTime monday)
+        {
+            List<DateTime> weekDays = new List<DateTime>();
+            for (int i = 0; i < 7; i++)
+            {
+                weekDays.Add(monday.AddDays(i));
+            }
+            return weekDays;
         }
     }
+
+
 }

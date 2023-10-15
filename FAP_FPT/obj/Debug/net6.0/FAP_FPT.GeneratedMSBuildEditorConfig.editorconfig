@@ -19,8 +19,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/PRN221/FAP_FPT/FAP_FPT/Pages/logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PRN221/FAP_FPT/FAP_FPT/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PRN221/FAP_FPT/FAP_FPT/Pages/Student/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxIb21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PRN221/FAP_FPT/FAP_FPT/Pages/Student/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PRN221/FAP_FPT/FAP_FPT/Pages/Student/ReportAttendanceStudent.cshtml]
@@ -33,6 +45,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/PRN221/FAP_FPT/FAP_FPT/Pages/Student/StudenSchedule.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxTdHVkZW5TY2hlZHVsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PRN221/FAP_FPT/FAP_FPT/Pages/Teacher/CheckAttendance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxDaGVja0F0dGVuZGFuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PRN221/FAP_FPT/FAP_FPT/Pages/Teacher/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxIb21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PRN221/FAP_FPT/FAP_FPT/Pages/Teacher/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PRN221/FAP_FPT/FAP_FPT/Pages/Teacher/TeacherSchedule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxUZWFjaGVyU2NoZWR1bGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PRN221/FAP_FPT/FAP_FPT/Pages/_ViewImports.cshtml]

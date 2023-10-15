@@ -253,3 +253,4 @@ D:\PRN221\FAP_FPT\FAP_FPT\obj\Debug\net6.0\refint\FAP_FPT.dll
 D:\PRN221\FAP_FPT\FAP_FPT\obj\Debug\net6.0\FAP_FPT.pdb
 D:\PRN221\FAP_FPT\FAP_FPT\obj\Debug\net6.0\FAP_FPT.genruntimeconfig.cache
 D:\PRN221\FAP_FPT\FAP_FPT\obj\Debug\net6.0\ref\FAP_FPT.dll
+D:\PRN221\FAP_FPT\FAP_FPT\bin\Debug\net6.0\libman.json

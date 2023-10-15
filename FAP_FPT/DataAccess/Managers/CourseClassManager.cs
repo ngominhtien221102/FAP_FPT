@@ -7,10 +7,10 @@ namespace FAP_FPT.DataAccess.Managers
     {
         private FAP_FPTContext context = new FAP_FPTContext();
 
-        public List<CourseClass> getCourseClassesByStudentId(int id)
+        public List<CourseClass> getCourseClassesByStudentId(int? id)
         {
             List<CourseClass> courseClasses = context.CourseClasses
-            .Where(cc => cc.Class.Students.Any(s => s.UserId == id))
+            .Where(cc => cc.Class.Students.Any(s => s.UserId == id)).Include(p => p.Course)
             .ToList();
             return courseClasses;
         }
